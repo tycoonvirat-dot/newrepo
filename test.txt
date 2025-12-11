@@ -1,0 +1,287 @@
+Predefined Directory
+- System Default Directories
+- Operating systems often have predefined directories for specific purposes:
+- Linux/Unix: /home, /etc, /var, /usr, /tmp
+
+Root user - 
+
+pwd-  present working directory
+ls - List of current directory and files
+mkdir -  Create Directory
+cd- current directory
+
+===================
+
+how to create the files in linux os 
+
+touch - we can create file(multiple file's) but we can't open or edit the file.
+cat - We can create a file it will do 2 activity create and automatic open it. and combining file but not able edit the file.
+vi - visual editor- it comes default editor for  linux.
+
+
+
+step 1: vi filename (devops) ->create the file
+step 2: not-editable mode ->user not able to edit
+step 3: i in keyboard (we will go to editable mode)
+step 4: user can write/edit
+step 5: for save the file : user need to come back from editable to non-editable mode 
+
+in keyboard user need to use: esc
+
+w- writeable save/save
+q- exit
+!- >override
+
+step 6: :wq! - override
+
+How to See Hidden Files
+Use: ls -a
+- → Shows all files, including hidden ones.
+- For detailed view:
+
+ls -la
+- → Lists permissions, ownership, size, and includes hidden files.
+
+How to Create a Hidden File
+- Just start the filename with a dot:
+touch .hiddenfile.txt
+mkdir .secretfolder
+
+
+How to Access Hidden Files
+- They behave like normal files. For example:
+nano .bashrc
+cd .secretfolder
+
+=====================================================================================================================================
+Quick Tip
+Hidden files are often used for configuration (like .bashrc, .profile, .git). They’re hidden to avoid cluttering your workspace.
+Linux_class3
+----------------------
+< - input redirection 
+> - output redirection
+>> - append redirection
+------------
+cat<filename
+----
+wq!=>
+:q!
+-----------
+ls -a
+.
+touch .filename
+-------------
+copy
+move
+rename
+delete
+--------------------
+copy=>cp=>cp source dest (if i copied sourcefile to Destination file the existing destination information got replaced with the data what we have.)
+move=>mv=>mv source dest
+rename=>mv oldfilename newfilename
+      =>mv devops aws
+delete
+-----------
+empt dir=>rmdir dirname
+file => rm filename
+dir/subdir and file => rm -rf dirname
+---------------------
+cp *.txt destdir
+mv *.pdf destdir
+---
+rm -rf *
+---------------------------
+test/somedata
+rmdir -> it will not work 
+rm -rf test
+---------------
+cd test=>rm -rf *
+
+
+
+how to install a software in linux os
+-----------------------------------------
+ec2-user
+-------
+sudo yum install softwarename
+sudo yum install softwarename -y
+sudo yum install git -y
+sudo yum install java-17 -y
+
+
+
+how to download a file/software in linux os 
+-----------------------------------------
+sudo wget url
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.49/bin/apache-tomcat-10.1.49.tar.gz
+
+==============================
+ec2-user 
+   =>dir1/dir2/dir3/dir4/dir5.........dir30
+   =>cd ..
+=========
+cd ~ s  => a shortcut that takes you directly to your home directory.
+
+----------
+ec2-user 
+   =>dir1/dir2/dir3/dir4/dir5.........dir30
+=>/
+=>cd /
+   
+
+how to create a user in linux os and give password the user 
+-----------------------------------------------
+cd /home
+   =>ec2-user 
+-------------------------
+sudo adduser username
+sudo adduser idream
+--
+sudo passwd username
+sudo passwd idream
+-----1 time
+-----2 time
+=================
+sudo su - == root user
+check how many user have by  -> ls
+then ( su - username ) switch to other user 
+then if you want go to the another user you have ==> exit  from the existing user and it goes to root.
+
+
+
+File Permission in Linux:
+
+
+When you put Is-I command -it shows a detailed listing of files and directories in the current
+directory.
+
+-rW-r -- r -- 1 user group4096 Jan 1510:23 example.txt
+drwxr-xr-x 2usergroup4096 Jan 1510:24 directory
+
+-rW-r -- r --: This part indicates the file's permissions. In this example:
+
+The leading dash (-) indicates that it's a regular file.
+The leading dash (d) indicates that it's a regular directory.
+
+rw -: The owner (user) has read (r) and write (w) permissions, but no execute (x) permission.
+r -: The group (group) has only read (r) permission but no write (w) or execute (x) permission.
+r --: Others (everyone else) also have only read (r) permission but no write (w) or execute (x)
+permission.
+
+1. 1: The number of hard links to the file. In this case, there's only one link.
+
+2. user: The user who owns the file.
+
+group: The group associated with the file.
+
+4096: The size of the file in bytes. In this case, it's a regular file with a size of 4096 bytes.
+
+5. Jan 15 10:23: The date and time when the file was last modified. In this case, it was modified
+on January 15 at 10:23.
+
+example.txt: The name of the file
+How to Change File Permission In Linux:
+Using chmod we can add, change the file permission.
+Let file1: -rw-r -- r --
+Example1 sudo chmod u+x file1 : -rwx r- - r- -
+Example2 sudo chmod u+x,g+w,o+w,o+x file1 : -rwx r-w rwx
+
+4.
+
+6.
+
+r =read
+w = write
+x = execute
+(- ) = remove the permission
+(+)= adding permission
+(=) = Assign permission
+
+How to Change File Permission In Octal Mode / Absolute Mode :
+Octal Mode :-
+. It is working Octal Principal.
+
+.
+
+It will work on 0-7
+Principal: -
+1= ON
+0 = OFF
+
+Based On This Two Principle it will Work: -
+0 = no Permission
+1 = Execute
+2 = Write
+3 = Write -Execute
+4 = read
+5 = Read-execute
+6 = read-Write
+7 = Read-Write-Execute
+Example :-
+Sudo chmod 777 filename :- (- rwxrwxrwx )
+Sudo chmod 664 filename :- ( - rw- rw- r - -)
+UMASK:
+Any file and directory that create in our linux system has some default permission.
+For fille - rw- rw- r - -
+For directory d rwxrwx r -x
+For Change the default permission we use umask.
+. If you see the current umask value (just put umask command and it is 002)
+Maximum permissions can be given to files/directory is 777.
+. From the maximum permission we substract the 002 value,
+So it will be, 777 - 002 = 775 (so according this value file and directory permission will set)
+
+For directory a 775 (d rwxrwx r - x)
+For file a 775 (- rw - rw- r -- )(one important thing you notice here that file not have execute permission on its creation)
+. So, in respective of that the equivalent value of default permission of file can't have execute
+permission but directory can have the execute permission
+
+Let, 0777-0222 = 0555 (r-xr-xr-x)
+So, if I apply umask 0222 it will be (r-xr-x r-x)
+For file a r- - r -- r -- (because in file can't have execute permission)
+For directory a r - xr- xr - x (directory have execute permission)
+umask -s (is used to display the current umask value in symbolic notation.)
+
+
+Local machine ---> aws linux instance
+=======================================
+steps 1: Create a new user in the server 
+steps 2: Set the password for same 
+        sudoers file need open and give permission to newuser
+steps 3: Create a .ssh folder/dir in newuser
+step  4: Create a file called authorized_keys
+step  5: Go to local machine where we are going to access the user 
+step  6: Go to cmd and type ssh-keygen -t rsa 
+step  7: It will create private and public key in the same machine
+step  8: Copy the public key contains and past it authorized_keys
+step 9:  Change the permission chmod 400
+step 10: Then Enable Password Authentication
+                        =>sudo vi /etc/ssh/sshd_config
+                        =>PasswordAuthentication line and make sure it ends with yes
+                        =>ChallengeResponseAuthentication option and disable it by adding no
+                        =>sudo systemctl restart sshd
+step 11: In local machine 
+                open cmd : ssh username@public ip 
+				ssh idream@13.203.198.186
+				
+==========================
+chmod 777 devops 
+chmod 644 devops 
+---------
+chmod and umask 
+   default => 022
+   what is default permission of user 
+             =>644 => file
+			 =>755 =>dir 
+---------------------------------
+chown 
+   root:root devops 
+SUDO CHOWN EC2-USER DEVOPs
+sudo chown :ec2-user devops 
+sudo chwon ec2-user:ec2-user devops 
+----------------
+ps -ef => all processes in your system
+
+top 
+   
+
+
