@@ -1,2 +1,2 @@
-mylog.log
-myscript.sh
+*.log
+*.sh
